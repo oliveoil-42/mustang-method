@@ -1,0 +1,14 @@
+[
+  {
+    "id": "sample-001",
+    "name": "Sample graduating senior",
+    "major": "Marine Sciences",
+    "college": "College of Science and Mathematics",
+    "graduationYear": "2026",
+    "advice": "Start research projects early and make time for fieldwork.",
+    "favoriteStrategy": "Weekly planning",
+    "quote": "Break big assignments into smaller milestones so you can make steady progress.",
+    "published": false,
+    "permissionConfirmed": false
+  }
+]

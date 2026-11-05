@@ -1,0 +1,32 @@
+[
+  {
+    "id": "cafes",
+    "name": "College of Agriculture, Food and Environmental Sciences",
+    "advice": "Plan around labs, fieldwork, and hands-on commitments. Add preparation and travel time to your calendar."
+  },
+  {
+    "id": "caed",
+    "name": "College of Architecture and Environmental Design",
+    "advice": "Break studio projects into research, concept development, drafting, model-making, revisions, and presentation milestones."
+  },
+  {
+    "id": "ceng",
+    "name": "College of Engineering",
+    "advice": "Schedule consistent problem-solving sessions, start team projects early, and use office hours before you fall behind."
+  },
+  {
+    "id": "cla",
+    "name": "College of Liberal Arts",
+    "advice": "Break reading and writing into manageable sessions: reading notes, research, outlining, drafting, and revision."
+  },
+  {
+    "id": "cosam",
+    "name": "College of Science and Mathematics",
+    "advice": "Practice throughout the semester and reserve dedicated time for lab preparation, reports, and cumulative exam review."
+  },
+  {
+    "id": "orfb",
+    "name": "Orfalea College of Business",
+    "advice": "Use shared calendars for team projects and set internal deadlines ahead of official due dates."
+  }
+]

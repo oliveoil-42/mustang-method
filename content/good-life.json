@@ -1,0 +1,22 @@
+[
+  {
+    "id": "coast",
+    "title": "Explore the Central Coast",
+    "description": "Make time for a beach visit, coastal trail, sunset, or local park."
+  },
+  {
+    "id": "clubs",
+    "title": "Find a community",
+    "description": "Explore student organizations, clubs, volunteering, and recreational sports."
+  },
+  {
+    "id": "creative",
+    "title": "Try something creative",
+    "description": "Learn photography, cook a new recipe, make art, or pick up an instrument."
+  },
+  {
+    "id": "rest",
+    "title": "Make room for rest",
+    "description": "Take a break, connect with friends, or enjoy an afternoon without a productivity goal."
+  }
+]

@@ -1,0 +1,27 @@
+[
+  {
+    "id": "time-blocking",
+    "name": "Time blocking",
+    "description": "Assign blocks for classes, studying, meals, work, exercise, and rest. Include transition time."
+  },
+  {
+    "id": "pomodoro",
+    "name": "Pomodoro technique",
+    "description": "Work in focused intervals with short breaks. Adjust the intervals to fit the task."
+  },
+  {
+    "id": "eisenhower",
+    "name": "Eisenhower matrix",
+    "description": "Sort tasks by urgency and importance so you can prioritize intentionally."
+  },
+  {
+    "id": "weekly-planning",
+    "name": "Weekly planning",
+    "description": "Review deadlines and commitments once a week, then break large projects into milestones."
+  },
+  {
+    "id": "task-batching",
+    "name": "Task batching",
+    "description": "Group similar tasks together to reduce the mental cost of switching activities."
+  }
+]
