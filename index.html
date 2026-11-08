@@ -29,6 +29,22 @@
       <article class="card"><h3>Feeling overwhelmed</h3><p>Write down your commitments, identify the next actions, and break large projects into milestones.</p></article>
       <article class="card"><h3>Finding balance</h3><p>Schedule non-negotiables first, including sleep, classes, work, and time to recharge.</p></article>
     </div>
+    <!-- Paste this inside the Choosing a Strategy section in index.html -->
+<div class="quiz-card" id="strategy-quiz">
+  <div class="quiz-topline">
+    <span id="quiz-progress">Question 1 of 4</span>
+    <span class="progress-track"><span id="progress-fill"></span></span>
+  </div>
+  <div id="quiz-content" aria-live="polite">
+    <h3 id="question-title"></h3>
+    <div id="answer-options" class="answer-options"></div>
+  </div>
+  <div class="quiz-controls">
+    <button class="quiz-button secondary" id="back-button" type="button" disabled>Back</button>
+    <button class="quiz-button" id="next-button" type="button" disabled>Next</button>
+  </div>
+  <div id="quiz-result" class="quiz-result" hidden aria-live="polite"></div>
+</div>
   </section>
   <section class="section alt" id="strategies">
     <p class="eyebrow">Build your toolkit</p><h2>Suggested Strategies</h2><div id="strategy-list" class="cards"></div>
