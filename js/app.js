@@ -1,11 +1,3 @@
-
-/* =========================================================
-   THE MUSTANG METHOD
-   Main website interactions
-   ========================================================= */
-
-/* ---------- 1. LOAD WEBSITE CONTENT ---------- */
-
 async function loadContent(file) {
   const response = await fetch(`content/${file}`);
   if (!response.ok) {
