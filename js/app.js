@@ -151,3 +151,56 @@ const colleges=[["CENG", "Engineering", "Problem sets, builds & debugging", "Sta
 const select=document.querySelector('#college');function showCollege(){const c=colleges[Number(select.value)];const root=document.querySelector('#college-detail');root.replaceChildren();for(const [tag,text] of [['h3',c[2]],['p',c[3]],['p',c[4]],['p','A possible project path: '+c[5]]]){const e=document.createElement(tag);e.textContent=text;root.append(e)}}select.addEventListener('change',showCollege);showCollege();
 const paths=[['I’m putting it off','Start for ten minutes','Choose one visible action: write a first sentence, solve one part, or open the project and run it. Set a short timer, then reassess.'],['Everything feels urgent','Choose the next important action','List your deadlines and responsibilities. Choose the task with the closest real consequence, then schedule one important task that is not yet urgent.'],['My week keeps changing','Build a flexible skeleton','Add fixed commitments first, including labs, work and travel. Reserve a few work blocks and leave one buffer for surprises.'],['I can’t focus','Make one task easier to stay with','Choose a specific output, close unrelated tabs and silence optional notifications. Try a short work sprint followed by a break.'],['There’s no room for me','Check your capacity','Name one thing you want time for outside school. Put it on the calendar, then reduce or renegotiate a commitment that will not fit.']];const buttons=[];paths.forEach((x,i)=>{const b=document.createElement('button');b.type='button';b.textContent=x[0];b.setAttribute('aria-pressed','false');b.onclick=()=>{buttons.forEach(v=>v.setAttribute('aria-pressed',String(v===b)));const r=document.querySelector('#recommendation');r.replaceChildren();const h=document.createElement('h3');h.textContent=x[1];const p=document.createElement('p');p.textContent=x[2];r.append(h,p)};buttons.push(b);document.querySelector('#choices').append(b)});buttons[0].click();
 document.querySelector('#plan').addEventListener('submit',e=>{e.preventDefault();const labels=['Academic outcome','First action','When and where','Hidden commitment','Room for life','Buffer and boundary'];const values=[...new FormData(e.target).values()];if(values.every(v=>!v.trim())){document.querySelector('#plan-status').textContent='Add at least one intention before downloading.';return}const text=`THE MUSTANG METHOD — MY WEEK\n\n${values.map((v,i)=>labels[i]+': '+(v.trim()||'To decide')).join('\n\n')}\n\nWeekly reflection: What helped? What will I change?`;const url=URL.createObjectURL(new Blob([text],{type:'text/plain'}));const a=document.createElement('a');a.href=url;a.download='my-mustang-week.txt';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);document.querySelector('#plan-status').textContent='Your weekly plan has been downloaded.'});
+/* Add this entire block at the END of app.js. It adds a quiz without replacing
+   the existing selectable-challenge finder above. */
+(() => {
+  const root = document.querySelector("#strategy-quiz");
+  if (!root) return;
+  const questions = [
+    {q:"When you look at your upcoming week, what feels hardest?",a:[["Getting started before deadlines feel urgent","start"],["Deciding which task deserves attention first","priorities"],["Making a plan that survives schedule changes","flexibility"],["Protecting focused time from interruptions","focus"],["Making room for rest and life outside school","balance"]]},
+    {q:"What usually happens when you sit down to work?",a:[["I delay beginning, even when I know what to do","start"],["I jump between tasks because everything feels important","priorities"],["Something unexpected often changes my plans","flexibility"],["I get distracted or lose momentum","focus"],["I keep working and have trouble stopping","balance"]]},
+    {q:"Which support would make the biggest difference?",a:[["A tiny first step that makes a task less intimidating","start"],["A clear way to sort urgent and important work","priorities"],["A flexible weekly structure with buffer time","flexibility"],["A routine for uninterrupted work sessions","focus"],["A schedule that protects personal time, too","balance"]]},
+    {q:"Which change sounds most realistic to try this week?",a:[["Work for 10 minutes on a task I've been avoiding","start"],["Choose three priorities for the week","priorities"],["Block fixed commitments and leave open space","flexibility"],["Try one 25-minute focused work sprint","focus"],["Schedule one restorative activity and a stopping time","balance"]]}
+  ];
+  const tips = {
+    start:["The 10-minute start","Make the beginning deliberately small. Choose one visible action and work for ten minutes; then decide whether to continue or take a break.",["Name the first action.","Set a 10-minute timer.","Note the next step before stopping."]],
+    priorities:["Priority sorting","Separate deadline pressure from importance. Protect time for important work before it becomes urgent.",["List deadlines and commitments.","Choose one must-do, one should-do and one optional task.","Schedule the next action for your top priority."]],
+    flexibility:["A flexible weekly skeleton","Build your week around fixed commitments, then add realistic work blocks. Leave buffer time so one change does not derail the whole plan.",["Add classes, labs, work and travel first.","Reserve two or three work blocks.","Leave an open buffer for changes."]],
+    focus:["Focused work sprints","Choose one task and a clear stopping point. Work for a short interval without optional notifications, then take a real break.",["Write the output you want.","Silence optional notifications.","Try 25 minutes of work and a 5-minute break."]],
+    balance:["Make room for the good life","Treat recovery, relationships and meaningful activities as real parts of your week—not rewards you only get after everything else is done.",["Choose one restorative or connecting activity.","Put it on your calendar.","Set a realistic stopping time for schoolwork."]]
+  };
+  let n=0, answers=Array(4).fill(null);
+  const $=s=>root.querySelector(s), qtitle=$("#quiz-question"), opts=$("#quiz-options"),
+    label=$("#quiz-progress-label"), fill=$("#quiz-progress-fill"), back=$("#quiz-back"),
+    next=$("#quiz-next"), area=$("#quiz-question-area"), actions=root.querySelector(".quiz-actions"),
+    result=$("#quiz-result"), progress=root.querySelector(".quiz-progress-row");
+  function render(){
+    const item=questions[n]; qtitle.textContent=item.q;
+    label.textContent=`Question ${n+1} of 4`; fill.style.width=`${(n+1)*25}%`;
+    back.disabled=n===0; next.disabled=answers[n]===null;
+    next.textContent=n===3?"See my recommendation":"Next"; opts.replaceChildren();
+    item.a.forEach(([word,kind],i)=>{
+      const l=document.createElement("label"); l.className="quiz-option";
+      const r=document.createElement("input"); r.type="radio"; r.name=`quiz-${n}`;
+      r.checked=answers[n]===i; r.addEventListener("change",()=>{answers[n]=i;next.disabled=false;});
+      const s=document.createElement("span"); s.textContent=word; l.append(r,s); opts.append(l);
+    });
+  }
+  function finish(){
+    const score={start:0,priorities:0,flexibility:0,focus:0,balance:0};
+    answers.forEach((a,i)=>score[questions[i].a[a][1]]++);
+    const winner=Object.keys(score).reduce((best,k)=>score[k]>score[best]?k:best,"start");
+    const [heading,desc,steps]=tips[winner]; area.hidden=true; actions.hidden=true; progress.hidden=true; result.hidden=false; result.replaceChildren();
+    const eyebrow=document.createElement("p"); eyebrow.className="eyebrow"; eyebrow.textContent="YOUR QUIZ RECOMMENDATION";
+    const h=document.createElement("h3"); h.textContent=heading;
+    const d=document.createElement("p"); d.textContent=desc;
+    const ol=document.createElement("ol"); steps.forEach(t=>{const li=document.createElement("li");li.textContent=t;ol.append(li);});
+    const note=document.createElement("p"); note.className="quiz-note"; note.textContent="This is a starting point, not a label. You can still choose a different challenge in the finder above.";
+    const again=document.createElement("button"); again.type="button"; again.className="quiz-control"; again.textContent="Retake the four-question quiz"; again.addEventListener("click",reset);
+    result.append(eyebrow,h,d,ol,note,again);
+  }
+  function reset(){n=0;answers=Array(4).fill(null);area.hidden=false;actions.hidden=false;progress.hidden=false;result.hidden=true;render();}
+  back.addEventListener("click",()=>{if(n>0){n--;render();}});
+  next.addEventListener("click",()=>{if(answers[n]===null)return;if(n<3){n++;render();}else finish();});
+  render();
+})();
