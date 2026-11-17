@@ -21,3 +21,47 @@
 .quiz-result ol{padding-left:22px}
 .quiz-note{font-size:13px;color:#526357}
 @media(max-width:560px){.strategy-quiz{padding:20px}.quiz-progress-row{align-items:flex-start;flex-direction:column;gap:8px}.quiz-progress-track{width:100%;flex:none}}
+
+.good-life-feature {
+  margin-top: 42px;
+  padding: 30px;
+  background: #fffef9;
+  color: #204c3b;
+  border-left: 4px solid #b69b41;
+  border-radius: 6px;
+}
+
+.good-life-feature .eyebrow {
+  color: #8a7430;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+}
+
+.good-life-feature h3 {
+  margin: 10px 0;
+  color: #204c3b;
+}
+
+.good-life-feature p:not(.eyebrow) {
+  max-width: 650px;
+  color: #526357;
+  line-height: 1.7;
+}
+
+.good-life-link {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 12px 18px;
+  background: #204c3b;
+  color: #fff;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+  transition: background 0.2s ease;
+}
+
+.good-life-link:hover {
+  background: #32664e;
+}
